@@ -2,6 +2,7 @@ package com.carlos.taskmanagerapi.controller;
 
 import com.carlos.taskmanagerapi.model.Task;
 import com.carlos.taskmanagerapi.repository.TaskRepository;
+import com.carlos.taskmanagerapi.service.TaskService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +16,16 @@ import java.util.List;
 @RestController
 public class TaskController {
 
-    private final TaskRepository repository;
+    private final TaskService taskService;
 
-    public TaskController(TaskRepository repository) {
-        this.repository = repository;
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @GetMapping("/tasks")
     public List<Task> getAllTasks() {
 
-        return repository.findAll();
+        return taskService.findAll();
     }
 
     @PostMapping("/tasks")
@@ -32,7 +33,7 @@ public class TaskController {
             @RequestBody Task task
     ) {
 
-        return repository.save(task);
+        return taskService.save(task);
     }
 
     @GetMapping("/tasks/{id}")
@@ -40,8 +41,8 @@ public class TaskController {
             @PathVariable Long id
     ) {
 
-        return repository.findById(id)
-                .orElse(null);
+        return taskService.findById(id);
+
     }
 
     @PutMapping("/tasks/{id}")
@@ -50,8 +51,8 @@ public class TaskController {
             @RequestBody Task updatedTask
     ) {
 
-        Task task = repository.findById(id)
-                .orElse(null);
+        Task task = taskService.findById(id);
+
 
         if (task == null) {
             return null;
@@ -61,7 +62,7 @@ public class TaskController {
         task.setPriority(updatedTask.getPriority());
         task.setCompleted(updatedTask.isCompleted());
 
-        return repository.save(task);
+        return taskService.save(task);
     }
 
     @DeleteMapping("/tasks/{id}")
@@ -69,6 +70,6 @@ public class TaskController {
             @PathVariable Long id
     ) {
 
-        repository.deleteById(id);
+        taskService.deleteById(id);
     }
 }
