@@ -9,6 +9,8 @@ import com.carlos.taskmanagerapi.dto.TaskResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.carlos.taskmanagerapi.model.Priority;
+import com.carlos.taskmanagerapi.model.Priority;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -144,6 +146,45 @@ public class TaskService {
                         title,
                         pageable
                 )
+                .map(this::toResponseDTO);
+    }
+
+    public Page<TaskResponseDTO> findWithFilters(
+            Boolean completed,
+            Priority priority,
+            String title,
+            Pageable pageable
+    ) {
+        Specification<Task> spec = Specification.where(null);
+
+        if (completed != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(
+                            root.get("completed"),
+                            completed
+                    )
+            );
+        }
+
+        if (priority != null) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(
+                            root.get("priority"),
+                            priority
+                    )
+            );
+        }
+
+        if (title != null && !title.isBlank()) {
+            spec = spec.and((root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(
+                            criteriaBuilder.lower(root.get("title")),
+                            "%" + title.toLowerCase() + "%"
+                    )
+            );
+        }
+
+        return repository.findAll(spec, pageable)
                 .map(this::toResponseDTO);
     }
 }
