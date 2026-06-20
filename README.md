@@ -1,4 +1,4 @@
-# 🚀 TaskManager API
+#  TaskManager API
 
 API REST para gerenciamento de tarefas desenvolvida com Java e Spring Boot.
 
@@ -8,7 +8,7 @@ Atualmente o projeto encontra-se na **Versão 2.0**.
 
 ---
 
-# 🎯 Objetivo
+#  Objetivo
 
 O principal objetivo deste projeto foi praticar conceitos essenciais do desenvolvimento backend moderno utilizando Java e Spring Boot.
 
@@ -16,7 +16,7 @@ Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, p
 
 ---
 
-# 🛠 Tecnologias Utilizadas
+#  Tecnologias Utilizadas
 
 * Java 17
 * Spring Boot
@@ -33,7 +33,7 @@ Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, p
 
 ---
 
-# ⭐ Destaques da Versão 2.0
+#  Destaques da Versão 2.0
 
 * Autenticação JWT
 * Controle de acesso por Roles (USER e ADMIN)
@@ -51,7 +51,7 @@ Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, p
 
 ---
 
-# 🏗 Arquitetura
+#  Arquitetura
 
 O projeto segue uma arquitetura em camadas:
 
@@ -79,7 +79,7 @@ Banco de dados PostgreSQL.
 
 ---
 
-# 📌 Funcionalidades
+#  Funcionalidades
 
 ## Gerenciamento de Tarefas
 
@@ -143,7 +143,7 @@ DELETE /tasks/{id}
 
 ---
 
-# 📖 Documentação Swagger
+#  Documentação Swagger
 
 Após executar a aplicação localmente:
 
@@ -151,7 +151,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-# 🚀 Como Executar
+#  Como Executar
 
 ## Pré-requisitos
 
@@ -169,7 +169,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-# 📂 Estrutura do Projeto
+#  Estrutura do Projeto
 
 src/main/java
 
@@ -188,7 +188,7 @@ src/test/java
 
 ---
 
-# 📚 Principais Aprendizados
+#  Principais Aprendizados
 
 Durante o desenvolvimento deste projeto foram praticados:
 
@@ -204,7 +204,7 @@ Durante o desenvolvimento deste projeto foram praticados:
 
 ---
 
-# 📈 Evolução do Projeto
+#  Evolução do Projeto
 
 ## Versão 1.0
 
@@ -241,7 +241,7 @@ Durante o desenvolvimento deste projeto foram praticados:
 
 ---
 
-# 👨‍💻 Autor
+#  Autor
 
 Carlos Rykelmy
 
