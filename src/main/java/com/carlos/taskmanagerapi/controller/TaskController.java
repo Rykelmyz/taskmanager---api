@@ -7,6 +7,10 @@ import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.PageRequest;
+import com.carlos.taskmanagerapi.model.Priority;
+import org.springframework.data.domain.Sort;
 
 @RestController
 public class TaskController {
@@ -18,7 +22,33 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public Page<TaskResponseDTO> getAllTasks(Pageable pageable) {
+    public Page<TaskResponseDTO> getAllTasks(
+            @RequestParam(required = false) Boolean completed,
+            @RequestParam(required = false) Priority priority,
+            @RequestParam(required = false) String title,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction
+    ) {
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        if (completed != null) {
+            return taskService.findByCompleted(completed, pageable);
+        }
+
+        if (priority != null) {
+            return taskService.findByPriority(priority, pageable);
+        }
+
+        if (title != null && !title.isBlank()) {
+            return taskService.findByTitle(title, pageable);
+        }
+
         return taskService.findAllResponses(pageable);
     }
 
