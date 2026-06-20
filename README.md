@@ -1,106 +1,149 @@
-# TaskManager API
+# 🚀 TaskManager API
 
-## Sobre o Projeto
+API REST para gerenciamento de tarefas desenvolvida com Java e Spring Boot.
 
-TaskManager API é uma API REST desenvolvida em Java com Spring Boot para gerenciamento de tarefas.
+O projeto evoluiu de um CRUD simples para uma aplicação com autenticação JWT, controle de acesso por roles, filtros avançados, paginação, documentação Swagger e testes unitários, simulando práticas utilizadas em aplicações backend reais.
 
-O objetivo do projeto foi praticar conceitos fundamentais de desenvolvimento backend, arquitetura em camadas, persistência de dados, validação de dados e construção de APIs REST.
-
-Esta é a versão 1.0 do projeto.
+Atualmente o projeto encontra-se na **Versão 2.0**.
 
 ---
 
-## Tecnologias Utilizadas
+# 🎯 Objetivo
+
+O principal objetivo deste projeto foi praticar conceitos essenciais do desenvolvimento backend moderno utilizando Java e Spring Boot.
+
+Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, persistência de dados, segurança, autenticação, documentação de APIs e testes automatizados.
+
+---
+
+# 🛠 Tecnologias Utilizadas
 
 * Java 17
 * Spring Boot
+* Spring Security
+* JWT Authentication
 * Spring Data JPA
 * Hibernate
 * PostgreSQL
 * Maven
 * Bean Validation
-* Swagger/OpenAPI
+* Swagger / OpenAPI
 * JUnit 5
+* Mockito
 
 ---
 
-## Arquitetura
+# ⭐ Destaques da Versão 2.0
+
+* Autenticação JWT
+* Controle de acesso por Roles (USER e ADMIN)
+* Criptografia de senhas com BCrypt
+* PostgreSQL com Spring Data JPA
+* Paginação de resultados
+* Ordenação dinâmica
+* Filtro por status
+* Filtro por prioridade
+* Busca por título
+* Filtros combinados
+* Documentação Swagger/OpenAPI
+* Testes unitários com JUnit e Mockito
+* Arquitetura em camadas
+
+---
+
+# 🏗 Arquitetura
 
 O projeto segue uma arquitetura em camadas:
 
 Controller → DTO → Service → Repository → Database
 
-### Camadas
+### Controller
 
-**Controller**
+Responsável por receber as requisições HTTP e retornar as respostas da API.
 
-* Recebe requisições HTTP
-* Retorna respostas da API
+### DTO
 
-**DTO**
+Responsável pelo controle dos dados de entrada e saída da aplicação.
 
-* Controla os dados de entrada e saída
-* Evita exposição direta das entidades
+### Service
 
-**Service**
+Contém as regras de negócio do sistema.
 
-* Contém as regras de negócio
+### Repository
 
-**Repository**
+Responsável pela persistência dos dados.
 
-* Responsável pela persistência dos dados
+### Database
 
-**Database**
-
-* PostgreSQL
+Banco de dados PostgreSQL.
 
 ---
 
-## Funcionalidades
+# 📌 Funcionalidades
+
+## Gerenciamento de Tarefas
 
 * Criar tarefas
 * Listar tarefas
 * Buscar tarefa por ID
 * Atualizar tarefas
 * Excluir tarefas
-* Validação de dados
+
+## Segurança
+
+* Cadastro de usuários
+* Login com JWT
+* Controle de acesso por Roles
+* Roles USER e ADMIN
+* Senhas criptografadas com BCrypt
+
+## Busca e Organização
+
+* Paginação
+* Ordenação
+* Filtro por status
+* Filtro por prioridade
+* Busca por título
+* Filtros combinados
+
+## Qualidade
+
+* Bean Validation
 * Tratamento global de exceções
-* Documentação automática com Swagger
+* Swagger/OpenAPI
+* Testes unitários
 
 ---
 
-## Endpoints
+# 🔗 Endpoints Principais
 
-### Listar tarefas
+## Autenticação
+
+POST /auth/login
+
+## Usuários
+
+POST /users
+
+GET /users
+
+GET /users/{id}
+
+## Tarefas
 
 GET /tasks
 
-### Buscar tarefa por ID
-
 GET /tasks/{id}
-
-### Criar tarefa
 
 POST /tasks
 
-Exemplo:
-
-{
-"title": "Estudar Spring Boot",
-"priority": "HIGH"
-}
-
-### Atualizar tarefa
-
 PUT /tasks/{id}
-
-### Excluir tarefa
 
 DELETE /tasks/{id}
 
 ---
 
-## Documentação Swagger
+# 📖 Documentação Swagger
 
 Após executar a aplicação localmente:
 
@@ -108,29 +151,25 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-## Como Executar
+# 🚀 Como Executar
 
-### Pré-requisitos
+## Pré-requisitos
 
 * Java 17
 * PostgreSQL
 * Maven
 
-### Passos
+## Passos
 
 1. Clonar o repositório
-
 2. Configurar o PostgreSQL
-
-3. Configurar o application.properties
-
+3. Criar o arquivo `application.properties` utilizando o `application-example.properties`
 4. Executar a aplicação
-
 5. Acessar o Swagger
 
 ---
 
-## Estrutura do Projeto
+# 📂 Estrutura do Projeto
 
 src/main/java
 
@@ -139,47 +178,70 @@ src/main/java
 * exception
 * model
 * repository
+* security
+* service
+* config
+
+src/test/java
+
 * service
 
 ---
 
-## Conceitos Aplicados
+# 📚 Principais Aprendizados
 
-* Programação Orientada a Objetos
-* APIs REST
-* Arquitetura em Camadas
-* DTO Pattern
-* Repository Pattern
-* Bean Validation
-* Exception Handling
-* Persistência com JPA/Hibernate
+Durante o desenvolvimento deste projeto foram praticados:
+
+* Desenvolvimento de APIs REST com Spring Boot
+* Arquitetura em camadas
+* Persistência de dados com JPA/Hibernate
+* Segurança com Spring Security e JWT
+* Controle de acesso por Roles
+* Testes unitários com JUnit e Mockito
+* Documentação de APIs com Swagger
+* Boas práticas de organização de código
+* Git e GitHub
 
 ---
 
-## Roadmap
+# 📈 Evolução do Projeto
 
-### Versão 1.0
+## Versão 1.0
 
-* CRUD completo
+* CRUD completo de tarefas
 * PostgreSQL
 * DTOs
 * Bean Validation
 * Exception Handling
 * Swagger/OpenAPI
 
-### Versão 2.0 (Planejada)
+## Versão 2.0
 
-* Interface React
-* Integração Frontend + Backend
 * Spring Security
 * JWT Authentication
+* Roles USER / ADMIN
+* Cadastro de usuários
+* Login autenticado
+* Paginação
+* Ordenação
+* Filtro por status
+* Filtro por prioridade
+* Busca por título
+* Filtros combinados
+* Testes unitários com JUnit e Mockito
+
+## Versão 3.0 (Planejada)
+
+* Frontend React
+* Integração Frontend + Backend
 * Docker
 * Deploy em nuvem
-* Testes automatizados avançados
+* CI/CD
+* Testes de integração
 
 ---
 
-## Autor
+# 👨‍💻 Autor
 
 Carlos Rykelmy
 
