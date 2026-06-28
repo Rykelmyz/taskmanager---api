@@ -25,5 +25,28 @@ public interface TaskRepository
             String title,
             Pageable pageable
     );
+
+    Page<Task> findByUserEmail(
+            String email,
+            Pageable pageable
+    );
+
+    Page<Task> findByCompletedAndUserEmail(
+            boolean completed,
+            String email,
+            Pageable pageable
+    );
+
+    Page<Task> findByPriorityAndUserEmail(
+            Priority priority,
+            String email,
+            Pageable pageable
+    );
+
+    Page<Task> findByTitleContainingIgnoreCaseAndUserEmail(
+            String title,
+            String email,
+            Pageable pageable
+    );
 }
 

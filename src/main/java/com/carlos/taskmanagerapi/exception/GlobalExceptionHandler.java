@@ -11,25 +11,37 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(TaskNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleTaskNotFoundException(
+    public ErrorResponse handleTaskNotFoundException(
             TaskNotFoundException ex
     ) {
-        return ex.getMessage();
+        return new ErrorResponse(
+                404,
+                "Not Found",
+                ex.getMessage()
+        );
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleDataIntegrityViolationException(
+    public ErrorResponse handleDataIntegrityViolationException(
             DataIntegrityViolationException ex
     ) {
-        return "Email já cadastrado";
+        return new ErrorResponse(
+                409,
+                "Conflict",
+                "Email já cadastrado"
+        );
     }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleRuntimeException(
+    public ErrorResponse handleRuntimeException(
             RuntimeException ex
     ) {
-        return ex.getMessage();
+        return new ErrorResponse(
+                400,
+                "Bad Request",
+                ex.getMessage()
+        );
     }
 }

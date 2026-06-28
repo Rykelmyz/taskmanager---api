@@ -4,9 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tasks")
+@EntityListeners(AuditingEntityListener.class)
 public class Task {
 
     @Id
@@ -22,6 +27,13 @@ public class Task {
     private Priority priority;
 
     private boolean completed;
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -66,4 +78,16 @@ public class Task {
     public User getUser() { return user; }
 
     public void setUser(User user) { this.user = user; }
+
+    public LocalDateTime getCreatedAt() { return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt;
+    }
 }

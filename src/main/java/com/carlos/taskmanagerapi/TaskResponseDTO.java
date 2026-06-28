@@ -1,6 +1,7 @@
 package com.carlos.taskmanagerapi.dto;
 
 import com.carlos.taskmanagerapi.model.Priority;
+import java.time.LocalDateTime;
 
 public class TaskResponseDTO {
 
@@ -8,6 +9,9 @@ public class TaskResponseDTO {
     private String title;
     private Priority priority;
     private boolean completed;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private String createdBy;
 
     public Long getId() {
         return id;
@@ -39,5 +43,29 @@ public class TaskResponseDTO {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }
