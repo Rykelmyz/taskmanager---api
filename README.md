@@ -1,22 +1,32 @@
-#  TaskManager API
+# TaskManager API
 
-API REST para gerenciamento de tarefas desenvolvida com Java e Spring Boot.
+API REST para gerenciamento de tarefas desenvolvida com **Java** e **Spring Boot**.
 
-O projeto evoluiu de um CRUD simples para uma aplicação com autenticação JWT, controle de acesso por roles, filtros avançados, paginação, documentação Swagger e testes unitários, simulando práticas utilizadas em aplicações backend reais.
+O projeto evoluiu de um CRUD simples para uma aplicação backend com autenticação JWT, controle de acesso por usuários, segurança, auditoria automática, documentação da API e testes unitários, simulando práticas utilizadas em aplicações corporativas.
 
-Atualmente o projeto encontra-se na **Versão 2.0**.
-
----
-
-#  Objetivo
-
-O principal objetivo deste projeto foi praticar conceitos essenciais do desenvolvimento backend moderno utilizando Java e Spring Boot.
-
-Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, persistência de dados, segurança, autenticação, documentação de APIs e testes automatizados.
+**Versão Atual:** **3.0**
 
 ---
 
-#  Tecnologias Utilizadas
+# Objetivo
+
+O principal objetivo deste projeto foi praticar conceitos fundamentais do desenvolvimento backend moderno utilizando Java e Spring Boot.
+
+Durante o desenvolvimento foram aplicados conceitos de:
+
+* Arquitetura em camadas
+* APIs REST
+* Persistência de dados
+* Segurança
+* Autenticação JWT
+* Controle de acesso
+* Testes unitários
+* Documentação de APIs
+* Boas práticas de organização de código
+
+---
+
+# Tecnologias Utilizadas
 
 * Java 17
 * Spring Boot
@@ -33,53 +43,56 @@ Durante o desenvolvimento foram aplicados conceitos de arquitetura em camadas, p
 
 ---
 
-#  Destaques da Versão 2.0
+# Destaques da Versão 3.0
 
+* Sistema multiusuário
+* Cada usuário acessa apenas suas próprias tarefas
+* Proteção contra acesso a tarefas de outros usuários
 * Autenticação JWT
 * Controle de acesso por Roles (USER e ADMIN)
-* Criptografia de senhas com BCrypt
-* PostgreSQL com Spring Data JPA
-* Paginação de resultados
-* Ordenação dinâmica
-* Filtro por status
-* Filtro por prioridade
+* Senhas criptografadas com BCrypt
+* Auditoria automática (`createdAt` e `updatedAt`)
+* Identificação do criador da tarefa (`createdBy`)
+* Paginação
+* Ordenação
 * Busca por título
-* Filtros combinados
+* Filtros por prioridade e status
+* Respostas de erro padronizadas (ErrorResponse)
+* JWT Secret externalizado para configuração
 * Documentação Swagger/OpenAPI
 * Testes unitários com JUnit e Mockito
-* Arquitetura em camadas
 
 ---
 
-#  Arquitetura
+# Arquitetura
 
 O projeto segue uma arquitetura em camadas:
 
 Controller → DTO → Service → Repository → Database
 
-### Controller
+## Controller
 
 Responsável por receber as requisições HTTP e retornar as respostas da API.
 
-### DTO
+## DTO
 
 Responsável pelo controle dos dados de entrada e saída da aplicação.
 
-### Service
+## Service
 
 Contém as regras de negócio do sistema.
 
-### Repository
+## Repository
 
 Responsável pela persistência dos dados.
 
-### Database
+## Database
 
 Banco de dados PostgreSQL.
 
 ---
 
-#  Funcionalidades
+# Funcionalidades
 
 ## Gerenciamento de Tarefas
 
@@ -96,26 +109,30 @@ Banco de dados PostgreSQL.
 * Controle de acesso por Roles
 * Roles USER e ADMIN
 * Senhas criptografadas com BCrypt
+* Cada usuário acessa apenas suas próprias tarefas
+* Proteção contra acesso indevido por ID
 
 ## Busca e Organização
 
 * Paginação
 * Ordenação
-* Filtro por status
-* Filtro por prioridade
 * Busca por título
+* Filtro por prioridade
+* Filtro por status
 * Filtros combinados
 
 ## Qualidade
 
 * Bean Validation
 * Tratamento global de exceções
+* ErrorResponse padronizado
+* Auditoria automática
 * Swagger/OpenAPI
 * Testes unitários
 
 ---
 
-# 🔗 Endpoints Principais
+# Endpoints Principais
 
 ## Autenticação
 
@@ -143,7 +160,7 @@ DELETE /tasks/{id}
 
 ---
 
-#  Documentação Swagger
+# Documentação Swagger
 
 Após executar a aplicação localmente:
 
@@ -151,7 +168,7 @@ http://localhost:8080/swagger-ui/index.html
 
 ---
 
-#  Como Executar
+# Como Executar
 
 ## Pré-requisitos
 
@@ -161,54 +178,61 @@ http://localhost:8080/swagger-ui/index.html
 
 ## Passos
 
-1. Clonar o repositório
-2. Configurar o PostgreSQL
-3. Criar o arquivo `application.properties` utilizando o `application-example.properties`
-4. Executar a aplicação
-5. Acessar o Swagger
+1. Clonar o repositório.
+2. Configurar o PostgreSQL.
+3. Criar o arquivo `application.properties` utilizando o `application-example.properties`.
+4. Executar a aplicação.
+5. Acessar o Swagger.
 
 ---
 
-#  Estrutura do Projeto
+# Estrutura do Projeto
 
+```
 src/main/java
 
-* controller
-* dto
-* exception
-* model
-* repository
-* security
-* service
-* config
+controller
+dto
+exception
+model
+repository
+security
+service
+config
 
 src/test/java
 
-* service
+service
+```
 
 ---
 
-#  Principais Aprendizados
+# Principais Aprendizados
 
 Durante o desenvolvimento deste projeto foram praticados:
 
 * Desenvolvimento de APIs REST com Spring Boot
 * Arquitetura em camadas
 * Persistência de dados com JPA/Hibernate
+* Relacionamentos entre entidades
 * Segurança com Spring Security e JWT
 * Controle de acesso por Roles
+* Controle de acesso por proprietário da tarefa
+* Auditoria automática
+* DTO Pattern
+* Tratamento global de exceções
 * Testes unitários com JUnit e Mockito
-* Documentação de APIs com Swagger
-* Boas práticas de organização de código
+* Documentação com Swagger/OpenAPI
+* Organização de configurações sensíveis
 * Git e GitHub
 
 ---
 
-#  Evolução do Projeto
+# Evolução do Projeto
 
 ## Versão 1.0
 
-* CRUD completo de tarefas
+* CRUD de tarefas
 * PostgreSQL
 * DTOs
 * Bean Validation
@@ -224,25 +248,33 @@ Durante o desenvolvimento deste projeto foram praticados:
 * Login autenticado
 * Paginação
 * Ordenação
-* Filtro por status
-* Filtro por prioridade
 * Busca por título
-* Filtros combinados
-* Testes unitários com JUnit e Mockito
+* Filtros
+* Testes unitários
 
-## Versão 3.0 (Planejada)
+## Versão 3.0
 
-* Frontend React
-* Integração Frontend + Backend
+* Sistema multiusuário
+* Cada usuário acessa apenas suas tarefas
+* Proteção contra acesso a tarefas de outros usuários
+* Auditoria automática (`createdAt` e `updatedAt`)
+* Identificação do criador da tarefa (`createdBy`)
+* ErrorResponse padronizado
+* JWT Secret externalizado
+* Atualização dos testes unitários
+
+## Versão 4.0 (Planejada)
+
 * Docker
-* Deploy em nuvem
-* CI/CD
-* Testes de integração
+* Docker Compose
+* Flyway
+* Deploy da API
+* Documentação final do projeto
 
 ---
 
-#  Autor
+# Autor
 
-Carlos Rykelmy
+**Carlos Rykelmy**
 
 Projeto desenvolvido para estudos de Engenharia de Software e desenvolvimento backend com Java e Spring Boot.
